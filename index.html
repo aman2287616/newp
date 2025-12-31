@@ -1,0 +1,412 @@
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy New Year</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050505',
+                        glass: 'rgba(255, 255, 255, 0.03)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #f472b6, #a78bfa, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: #f0f;
+            animation: fall linear forwards;
+            z-index: 50;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+
+        /* Card Transitions */
+        .card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+        }
+        
+        /* State: Covered */
+        .card-container.covered .card-cover {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        .card-container.covered .card-content {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+
+        /* State: Revealed */
+        .card-container.revealed .card-cover {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.05);
+        }
+        .card-container.revealed .card-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Fade transition for content swap */
+        .fade-enter {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-dark text-zinc-300 font-sans antialiased overflow-x-hidden relative selection:bg-rose-500/30 selection:text-rose-200">
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Main Mobile Container -->
+    <main class="max-w-md mx-auto w-full min-h-screen relative flex flex-col">
+        
+        <!-- Header -->
+        <header class="flex justify-between items-center px-6 py-6 sticky top-0 z-40 backdrop-blur-md bg-dark/50 border-b border-white/5">
+            <div class="flex items-center gap-2">
+                <span class="iconify text-rose-400" data-icon="lucide:sparkles" data-width="18"></span>
+                <span class="text-xs font-medium tracking-widest uppercase text-zinc-500">Us • 2025</span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+                <span class="iconify text-zinc-400" data-icon="lucide:heart" data-width="14"></span>
+            </div>
+        </header>
+
+        <div class="flex-1 flex flex-col px-6 pt-10 pb-20 space-y-12">
+
+            <!-- Hero Section -->
+            <section class="space-y-6 text-center relative">
+                <div class="inline-flex items-center justify-center px-3 py-1 rounded-full border border-rose-500/20 bg-rose-500/5 text-rose-300 text-xs font-medium mb-2">
+                    <span class="animate-pulse mr-2">●</span> New Chapter
+                </div>
+                
+                <h1 class="text-5xl font-medium tracking-tight text-white leading-[1.1]">
+                    Happy<br>
+                    <span class="text-gradient">New Year</span><br>
+                    My Love.
+                </h1>
+                
+                <p class="text-zinc-400 text-sm leading-relaxed max-w-[280px] mx-auto">
+                    Let's look back at my favorite moments with you before we start our new year.
+                </p>
+            </section>
+
+            <!-- Sequential Memory Stack -->
+            <section class="space-y-6 relative max-w-[320px] mx-auto w-full">
+                
+                <!-- Progress Indicator -->
+                <div class="flex gap-2 justify-between mb-2">
+                    <div class="h-1 bg-zinc-800 rounded-full flex-1 overflow-hidden">
+                        <div id="progress-1" class="h-full bg-rose-500 w-full progress-bar"></div>
+                    </div>
+                    <div class="h-1 bg-zinc-800 rounded-full flex-1 overflow-hidden">
+                        <div id="progress-2" class="h-full bg-zinc-800 w-0 progress-bar"></div>
+                    </div>
+                    <div class="h-1 bg-zinc-800 rounded-full flex-1 overflow-hidden">
+                        <div id="progress-3" class="h-full bg-zinc-800 w-0 progress-bar"></div>
+                    </div>
+                    <div class="h-1 bg-zinc-800 rounded-full flex-1 overflow-hidden">
+                        <div id="progress-4" class="h-full bg-zinc-800 w-0 progress-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Main Card Container -->
+                <div id="card-stack" class="relative w-full aspect-[4/5] perspective-[1000px]">
+                    
+                    <!-- Background Decoration (Stack effect) -->
+                    <div class="absolute inset-0 top-3 scale-[0.95] bg-zinc-800/50 rounded-2xl border border-white/5 -z-10"></div>
+                    <div class="absolute inset-0 top-6 scale-[0.90] bg-zinc-800/30 rounded-2xl border border-white/5 -z-20"></div>
+
+                    <!-- The Interactive Card -->
+                    <div id="current-card" class="card-container covered relative w-full h-full cursor-pointer group" onclick="revealCurrentCard()">
+                        
+                        <!-- Side A: Cover (Number) -->
+                        <div class="card-cover card-inner absolute inset-0 bg-zinc-900 border border-zinc-800 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20 transition-all duration-500 group-hover:border-zinc-700">
+                            <span id="cover-num" class="text-6xl font-light text-zinc-700 font-serif italic">1</span>
+                            <div class="absolute bottom-6 flex items-center gap-2 text-[10px] text-zinc-500 uppercase tracking-widest animate-pulse">
+                                <span class="iconify" data-icon="lucide:pointer" data-width="12"></span>
+                                Tap to Reveal
+                            </div>
+                        </div>
+
+                        <!-- Side B: Content (Image) -->
+                        <div class="card-content card-inner absolute inset-0 bg-zinc-800 rounded-2xl overflow-hidden shadow-2xl z-10">
+                            <img id="card-img" src="img1.jpeg" class="w-full h-full object-cover opacity-80" alt="Memory">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-6">
+                                <p id="card-title" class="text-sm font-medium text-white mb-1">First Date</p>
+                                <p id="card-desc" class="text-xs text-zinc-400">Where it all started</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Button Container -->
+                <div class="h-12 flex items-center justify-center">
+                    <button id="next-btn" onclick="nextCard()" class="opacity-0 pointer-events-none transform translate-y-2 transition-all duration-500 flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-dark text-xs font-medium hover:bg-zinc-200 active:scale-95">
+                        Next Memory
+                        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                    </button>
+                    
+                    <div id="final-msg" class="hidden text-center">
+                        <span class="text-xs text-rose-400">All memories unlocked ♥</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- A Letter Section -->
+            <section class="relative pt-8">
+                <div class="absolute -top-6 -left-6 w-12 h-12 border-l border-t border-rose-500/20 rounded-tl-2xl"></div>
+                <div class="absolute -bottom-6 -right-6 w-12 h-12 border-r border-b border-rose-500/20 rounded-br-2xl"></div>
+                
+                <div class="space-y-4">
+                    <h2 class="text-lg font-medium text-white tracking-tight">For 2025</h2>
+                    <p class="text-sm text-zinc-400 leading-7">
+                        I don't need any resolutions. I just need you by my side. Let's make this year even better than the last. More laughter, more love, and more memories.
+                    </p>
+                    <div class="flex items-center gap-2 pt-2">
+                        <div class="h-px w-8 bg-rose-500/50"></div>
+                        <span class="text-xs text-rose-400 italic font-medium">I love you</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Surprise -->
+            <section class="pt-4">
+                <button onclick="triggerSurprise()" id="surpriseBtn" class="group relative w-full overflow-hidden rounded-xl bg-white py-4 px-4 text-center transition-all active:scale-[0.98]">
+                    <div class="absolute inset-0 bg-gradient-to-r from-rose-500 via-purple-500 to-blue-500 opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                    <div class="absolute inset-0 bg-white/5 opacity-0 group-active:opacity-100 transition-opacity"></div>
+                    <span class="relative flex items-center justify-center gap-2 text-sm font-medium text-dark">
+                        <span class="iconify" data-icon="lucide:gift" data-width="16"></span>
+                        Tap for a Surprise
+                    </span>
+                </button>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-white/5 bg-dark">
+            <p class="text-[10px] text-zinc-600 tracking-widest uppercase">
+                Designed for My Favorite Person
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Modal for surprise -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center px-6 opacity-0 pointer-events-none transition-opacity duration-500 bg-black/80 backdrop-blur-sm">
+        <div class="glass-panel p-8 rounded-2xl max-w-sm w-full text-center space-y-6 transform scale-95 transition-transform duration-500" id="modalContent">
+            <div class="w-16 h-16 rounded-full bg-rose-500/10 text-rose-400 mx-auto flex items-center justify-center animate-float">
+                <span class="iconify" data-icon="lucide:heart-handshake" data-width="32"></span>
+            </div>
+            <div>
+                <h3 class="text-xl font-medium text-white tracking-tight mb-2">You are my gift.</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">
+                    Thank you for making my life beautiful. Happy New Year, babe.
+                </p>
+            </div>
+            <button onclick="closeModal()" class="w-full py-3 rounded-lg bg-zinc-800 text-zinc-200 text-sm font-medium border border-zinc-700 active:bg-zinc-700">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Data for Memories
+        const memories = [
+            {
+                id: 1,
+                img: "img1.jpeg?v=1",
+
+                title: "First meet",
+                desc: "Where it started"
+            },
+            {
+                id: 2,
+                img: "img2.jpeg",
+                title: "Your Smile",
+                desc: "My favorite view"
+            },
+            {
+                id: 3,
+                img: "img3.jpeg",
+                title: "Your Eyes",
+                desc: "Every mile with you"
+            },
+            {
+                id: 4,
+                img: "img4.jpeg",
+                title: "Rasmalai",
+                desc: "Can't wait"
+            }
+        ];
+
+        let currentIndex = 0;
+        const cardContainer = document.getElementById('current-card');
+        const nextBtn = document.getElementById('next-btn');
+        
+        // DOM Elements to update
+        const coverNum = document.getElementById('cover-num');
+        const cardImg = document.getElementById('card-img');
+        const cardTitle = document.getElementById('card-title');
+        const cardDesc = document.getElementById('card-desc');
+
+        function revealCurrentCard() {
+            if (cardContainer.classList.contains('covered')) {
+                cardContainer.classList.remove('covered');
+                cardContainer.classList.add('revealed');
+                
+                // Show Next button if not last card
+                if (currentIndex < memories.length - 1) {
+                    setTimeout(() => {
+                        nextBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+                    }, 400);
+                } else {
+                    // Last card logic
+                    setTimeout(() => {
+                        document.getElementById('final-msg').classList.remove('hidden');
+                        document.getElementById('final-msg').classList.add('fade-enter');
+                    }, 400);
+                }
+            }
+        }
+
+        function nextCard() {
+            // Hide button immediately
+            nextBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+
+            // Increment index
+            currentIndex++;
+            if (currentIndex >= memories.length) return;
+
+            // Update Progress Bars
+            for(let i = 1; i <= memories.length; i++) {
+                const bar = document.getElementById(`progress-${i}`);
+                if (i <= currentIndex + 1) {
+                    bar.classList.remove('bg-zinc-800', 'w-0');
+                    bar.classList.add('bg-rose-500', 'w-full');
+                }
+            }
+
+            // Temporarily hide content to swap smoothly
+            setTimeout(() => {
+                // Reset card to covered state
+                cardContainer.classList.remove('revealed');
+                cardContainer.classList.add('covered');
+
+                // Update content after a brief delay so user doesn't see swap
+                setTimeout(() => {
+                    const data = memories[currentIndex];
+                    coverNum.innerText = data.id;
+                    cardImg.src = data.img;
+                    cardTitle.innerText = data.title;
+                    cardDesc.innerText = data.desc;
+                }, 300);
+            }, 200);
+        }
+
+        // Surprise & Modal Logic
+        function triggerSurprise() {
+            createConfetti();
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.add('scale-95');
+            modalContent.classList.remove('scale-100');
+        }
+
+        function createConfetti() {
+            const colors = ['#f472b6', '#a78bfa', '#60a5fa', '#ffffff'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                const left = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 0.5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = left + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = color;
+                confetti.style.animationDuration = duration + 's';
+                confetti.style.animationDelay = delay + 's';
+                
+                document.body.appendChild(confetti);
+                setTimeout(() => { confetti.remove(); }, (duration + delay) * 1000);
+            }
+        }
+    </script>
+
+</body></html>
